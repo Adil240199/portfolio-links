@@ -6,7 +6,7 @@
 
 ---
 
-### 🔹 [English School Platform](https://school-drab-nine.vercel.app/)
+### 🔹 [English School Platform](https://school-raymea.vercel.app/)
 - **Tech Stack**: React, Css, Hooks, i18 react
 - **GitHub**: [View Code](https://github.com/Adil240199/school)
 
