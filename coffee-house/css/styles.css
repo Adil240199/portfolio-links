@@ -371,10 +371,11 @@ header .burgerButtonActive:after {
   font-style: italic;
   color: rgb(176, 144, 122);
 }
-@media (max-width: 380px) {
+@media (max-width: 768px) {
   .FavouritesCoffee h2 {
     font-size: 2em;
     line-height: 40px;
+    margin: 0;
   }
 }
 .FavouritesCoffee .rowSliderCoffee {
@@ -423,9 +424,9 @@ header .burgerButtonActive:after {
   max-width: 870px;
   overflow: hidden;
 }
-@media (min-width: 381px) {
+@media (max-width: 1100px) {
   .FavouritesCoffee .rowSliderCoffee .sliders {
-    overflow: hidden;
+    max-width: 600px;
   }
 }
 .FavouritesCoffee .rowSliderCoffee .carousel {
@@ -447,6 +448,12 @@ header .burgerButtonActive:after {
   width: 100%;
   display: block;
   margin: 25px auto;
+}
+@media (max-width: 768px) {
+  .FavouritesCoffee .rowSliderCoffee .slider img {
+    max-width: 250px;
+    min-height: 250px;
+  }
 }
 .FavouritesCoffee .rowSliderCoffee .slider h5 {
   font-size: 1.5rem;
