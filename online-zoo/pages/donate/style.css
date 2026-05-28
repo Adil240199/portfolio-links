@@ -12,9 +12,10 @@
     display: none;
 }
 body{
-    min-width:1600px;
+    width: 100%;
+    max-width: 1600px;
     color: #FDFDFF;
-    margin: 0px;
+    margin: 0 auto;
     padding: 0px;
 }
 button{
@@ -375,8 +376,8 @@ font-weight:500;
     padding-left: 220px;
     padding-right: 220px;
     height: 443px;
-    width: 1600px;
-    min-width: 100%;
+    width: 100%;
+    max-width: 1600px;
     background-color: rgba(17, 17, 21, 1);
     display: flex;
     justify-content:space-between;
@@ -559,3 +560,40 @@ color: #FE9013;
 }
 }
 
+@media only screen and (min-width:1001px) and (max-width:1599px) {
+  .first_text {
+    margin-left: clamp(16px, 4vw, 60px);
+    margin-right: clamp(16px, 2vw, 32px);
+  }
+
+  .last_text {
+    margin-right: clamp(16px, 4vw, 60px);
+  }
+
+  li:not(.first_text) {
+    margin-right: clamp(16px, 2.6vw, 32px);
+  }
+
+  h2,
+  h3,
+  .text_donate {
+    margin-left: clamp(16px, 4vw, 60px);
+  }
+
+  .PickandFeedafriend {
+    width: min(1160px, calc(100% - 24px));
+  }
+
+  .Block_line {
+    width: min(976px, calc(100% - 24px));
+  }
+
+  .line {
+    width: calc(100% - 61px);
+  }
+
+  .Footer {
+    padding-left: clamp(16px, 4vw, 60px);
+    padding-right: clamp(16px, 4vw, 60px);
+  }
+}
