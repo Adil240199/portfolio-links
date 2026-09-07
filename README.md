@@ -11,6 +11,12 @@
 - **GitHub**: [View Code](https://github.com/Adil240199/school)
 
 ---
+### 🔹 [Instagram Followers Checker](https://instagram-followers-checker-tau.vercel.app/)
+- **Tech Stack**: JavaScript, CSS 
+- **GitHub**: [View Code](https://github.com/Adil240199/instagram-followers-checker)
+
+
+---
 
 ### 🔹 [Momentum App](https://adil240199.github.io/portfolio-links/momentum/)
 - **Tech Stack**: JavaScript, CSS 
