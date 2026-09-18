@@ -8,7 +8,7 @@
 
 ### 🔹 [English School Platform](https://school-raymea.vercel.app/)
 - **Tech Stack**: React, Css, Hooks, i18 react
-- **GitHub**: [View Code](https://github.com/Adil240199/school)
+- **GitHub**: [View Code Frontend](https://github.com/Adil240199/school) [View Code Backend](https://github.com/Adil240199/school-backend) 
 
 ---
 ### 🔹 [Instagram Followers Checker](https://instagram-followers-checker-tau.vercel.app/)
