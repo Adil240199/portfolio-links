@@ -1,168 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/favicon.ico" rel="shortcut icon" />
-    <link rel="stylesheet" href="css/owfont-regular.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>momentum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#172327">
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/owfont-regular.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Momentum | A quiet moment</title>
   </head>
   <body>
-    <header class="header">
-      <div class="player">
-        <audio
-          class="audio"
-          src="./assets/sounds/assets_sounds_AquaCaelestis.mp3"
-        ></audio>
-        <div class="player-controls">
-          <button class="play-prev player-icon"></button>
-          <button class="play player-icon"></button>
-          <button class="play-next player-icon"></button>
+    <div class="dashboard">
+      <header class="header">
+        <section class="player" aria-label="Music player">
+          <audio class="audio" preload="metadata"></audio>
+          <div class="player-controls">
+            <button class="play-prev player-icon" type="button" aria-label="Previous track"></button>
+            <button class="play player-icon" type="button" aria-label="Play music" aria-pressed="false"></button>
+            <button class="play-next player-icon" type="button" aria-label="Next track"></button>
+          </div>
+          <input class="progress-block" type="range" min="0" max="100" value="0" aria-label="Track progress">
+          <ol class="play-list" aria-label="Playlist"></ol>
+          <p class="player-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="weather" aria-label="Local weather">
+          <label class="sr-only" for="city">Weather for city</label>
+          <input type="text" class="city" id="city" placeholder="Enter city" value="Budapest" autocomplete="off">
+          <i class="weather-icon owf" aria-hidden="true"></i>
+          <div class="weather-error" role="status" aria-live="polite"></div>
+          <div class="description-container">
+            <span class="temperature"></span>
+            <span class="weather-description"></span>
+          </div>
+          <div class="wind"></div>
+          <div class="humidity"></div>
+        </section>
+      </header>
+
+      <main class="main">
+        <div class="slider-icons" aria-label="Change background">
+          <button class="slide-prev slider-icon" type="button" aria-label="Previous background"></button>
+          <button class="slide-next slider-icon" type="button" aria-label="Next background"></button>
         </div>
-        <div class="progress-block">
-          <div class="progress"></div>
+        <time class="time" aria-label="Current time"></time>
+        <time class="date"></time>
+        <div class="greeting-container">
+          <span class="greeting"></span>
+          <label class="sr-only" for="name">Your name</label>
+          <input type="text" class="name" id="name" placeholder="Your name" autocomplete="given-name">
         </div>
-        <ul class="play-list">
-          <li class="play-item">Aqua Caelestis</li>
-          <li class="play-item">River Flows In You</li>
-          <li class="play-item">Summer Wind</li>
-          <li class="play-item">Ennio Morricone</li>
-        </ul>
-      </div>
+      </main>
 
-      <div class="weather">
-        <input
-          type="text"
-          class="Lng-city city"
-          placeholder="[Enter city]"
-          value="Budapest"
-        />
-        <i class="weather-icon owf"></i>
-        <div class="weather-error"></div>
-        <div class="description-container">
-          <span class="temperature"></span>
-          <span class="weather-description"></span>
-        </div>
-        <div class="wind"></div>
-        <div class="humidity"></div>
-      </div>
-    </header>
+      <footer class="footer">
+        <button class="change-quote" type="button" aria-label="Change quote"></button>
+        <figure class="quote-block">
+          <blockquote class="quote" aria-live="polite"></blockquote>
+          <figcaption class="author"></figcaption>
+        </figure>
 
-    <main class="main">
-      <div class="slider-icons">
-        <button class="slide-prev slider-icon"></button>
-        <button class="slide-next slider-icon"></button>
-      </div>
-      <time class="time"></time>
-      <date class="date"></date>
-      <div class="greeting-container">
-        <span class="greeting"></span>
-        <input type="text" class="name" placeholder="Enter name" />
-      </div>
-    </main>
+        <button class="setting-icon panel-toggle" type="button" aria-label="Open settings" aria-controls="settings-panel" aria-expanded="false">
+          <img src="./assets/svg/sETTING.png" alt="">
+        </button>
+        <button class="todo-toggle panel-toggle" type="button" aria-label="Open to-do list" aria-controls="todo-panel" aria-expanded="false">
+          <img src="./assets/svg/todolist.png" alt="">
+        </button>
 
-    <footer class="footer">
-      <button
-        class="change-quote"
-        type="button"
-        aria-label="Change quote"
-      ></button>
-      <div>
-        <div class="quote"></div>
-        <div class="author"></div>
-      </div>
-
-      <aside class="setting" aria-label="Settings panel">
-        <div class="setting-header">
-          <span>Settings</span>
-          <button
-            class="close-setting"
-            type="button"
-            aria-label="Close settings"
-          >
-            ×
-          </button>
-        </div>
-
-        <label class="setting-row">
-          <span>Language</span>
-          <select
-            name="select"
-            class="block_lang"
-            aria-label="Language selector"
-          >
-            <option value="en">En</option>
-            <option value="ru">Ru</option>
-          </select>
-        </label>
-
-        <div class="setting-list">
-          <label class="setting-item">
-            <span>Audio</span>
-            <input
-              class="setting-toggle"
-              type="checkbox"
-              data-target="player"
-              checked
-            />
+        <aside class="setting panel" id="settings-panel" aria-label="Settings panel">
+          <div class="panel-header">
+            <h2>Settings</h2>
+            <button class="close-setting panel-close" type="button" aria-label="Close settings">×</button>
+          </div>
+          <label class="setting-row" for="language">
+            <span>Language</span>
+            <select name="language" class="block_lang" id="language" aria-label="Language">
+              <option value="en">English</option>
+              <option value="ru">Русский</option>
+            </select>
           </label>
-          <label class="setting-item">
-            <span>Weather</span>
-            <input
-              class="setting-toggle"
-              type="checkbox"
-              data-target="weather"
-              checked
-            />
-          </label>
-          <label class="setting-item">
-            <span>Date</span>
-            <input
-              class="setting-toggle"
-              type="checkbox"
-              data-target="date"
-              checked
-            />
-          </label>
-          <label class="setting-item">
-            <span>Greeting</span>
-            <input
-              class="setting-toggle"
-              type="checkbox"
-              data-target="greeting"
-              checked
-            />
-          </label>
-        </div>
-      </aside>
+          <div class="setting-list">
+            <label class="setting-item"><span>Audio</span><input class="setting-toggle" type="checkbox" data-target="player" checked></label>
+            <label class="setting-item"><span>Weather</span><input class="setting-toggle" type="checkbox" data-target="weather" checked></label>
+            <label class="setting-item"><span>Date</span><input class="setting-toggle" type="checkbox" data-target="date" checked></label>
+            <label class="setting-item"><span>Greeting</span><input class="setting-toggle" type="checkbox" data-target="greeting" checked></label>
+          </div>
+        </aside>
 
-      <button class="setting-icon" type="button" aria-label="Open settings">
-        <img src="./assets/svg/sETTING.png" alt="setting-icon" />
-      </button>
-
-      <button class="todo-toggle" type="button" aria-label="Open todo list">
-        <img src="./assets/svg/todolist.png" alt="todo" />
-      </button>
-
-      <aside class="todo_list" aria-label="ToDo list panel">
-        <div class="todo-header">
-          <h5>ToDo list</h5>
-        </div>
-        <div class="create_new_todo">
-          <input
-            type="text"
-            class="message"
-            placeholder="Add task"
-            aria-label="Add task"
-          />
-          <button class="add" type="button">Add</button>
-        </div>
-        <div class="wrapper">
-          <ul class="todo"></ul>
-        </div>
-      </aside>
-    </footer>
+        <aside class="todo_list panel" id="todo-panel" aria-label="To-do list panel">
+          <div class="panel-header">
+            <h2>To-do list</h2>
+            <button class="close-todo panel-close" type="button" aria-label="Close to-do list">×</button>
+          </div>
+          <form class="create_new_todo">
+            <label class="sr-only" for="new-task">Add a task</label>
+            <input type="text" class="message" id="new-task" placeholder="Add a task" autocomplete="off">
+            <button class="add" type="submit">Add</button>
+          </form>
+          <div class="wrapper">
+            <ul class="todo"></ul>
+          </div>
+        </aside>
+      </footer>
+    </div>
     <script type="module" src="js/script.js"></script>
   </body>
 </html>

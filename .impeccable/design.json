@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T18:38:00+01:00",
+  "title": "Design System: Focused Studio",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Deep Ink",
+        "canonical": "oklch(25% 0.028 240)",
+        "tonalRamp": [
+          "oklch(15% 0.028 240)",
+          "oklch(25% 0.028 240)",
+          "oklch(35% 0.028 240)",
+          "oklch(45% 0.028 240)",
+          "oklch(55% 0.028 240)",
+          "oklch(65% 0.028 240)",
+          "oklch(75% 0.028 240)",
+          "oklch(95% 0.028 240)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "oklch(98% 0.008 90)",
+        "tonalRamp": [
+          "oklch(15% 0.008 90)",
+          "oklch(25% 0.008 90)",
+          "oklch(35% 0.008 90)",
+          "oklch(45% 0.008 90)",
+          "oklch(55% 0.008 90)",
+          "oklch(65% 0.008 90)",
+          "oklch(75% 0.008 90)",
+          "oklch(95% 0.008 90)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Cool Surface",
+        "canonical": "oklch(94% 0.01 240)",
+        "tonalRamp": [
+          "oklch(15% 0.01 240)",
+          "oklch(25% 0.01 240)",
+          "oklch(35% 0.01 240)",
+          "oklch(45% 0.01 240)",
+          "oklch(55% 0.01 240)",
+          "oklch(65% 0.01 240)",
+          "oklch(75% 0.01 240)",
+          "oklch(95% 0.01 240)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Text",
+        "canonical": "oklch(52% 0.018 240)",
+        "tonalRamp": [
+          "oklch(15% 0.018 240)",
+          "oklch(25% 0.018 240)",
+          "oklch(35% 0.018 240)",
+          "oklch(45% 0.018 240)",
+          "oklch(55% 0.018 240)",
+          "oklch(65% 0.018 240)",
+          "oklch(75% 0.018 240)",
+          "oklch(95% 0.018 240)"
+        ]
+      },
+      "forest": {
+        "role": "primary",
+        "displayName": "Forest",
+        "canonical": "oklch(39% 0.055 155)",
+        "tonalRamp": [
+          "oklch(15% 0.055 155)",
+          "oklch(25% 0.055 155)",
+          "oklch(35% 0.055 155)",
+          "oklch(45% 0.055 155)",
+          "oklch(55% 0.055 155)",
+          "oklch(65% 0.055 155)",
+          "oklch(75% 0.055 155)",
+          "oklch(95% 0.055 155)"
+        ]
+      },
+      "forest-on-dark": {
+        "role": "secondary",
+        "displayName": "Forest on Dark",
+        "canonical": "oklch(72% 0.08 155)",
+        "tonalRamp": [
+          "oklch(15% 0.08 155)",
+          "oklch(25% 0.08 155)",
+          "oklch(35% 0.08 155)",
+          "oklch(45% 0.08 155)",
+          "oklch(55% 0.08 155)",
+          "oklch(65% 0.08 155)",
+          "oklch(75% 0.08 155)",
+          "oklch(95% 0.08 155)"
+        ]
+      },
+      "wood": {
+        "role": "tertiary",
+        "displayName": "Walnut",
+        "canonical": "oklch(38% 0.035 55)",
+        "tonalRamp": [
+          "oklch(15% 0.035 55)",
+          "oklch(25% 0.035 55)",
+          "oklch(35% 0.035 55)",
+          "oklch(45% 0.035 55)",
+          "oklch(55% 0.035 55)",
+          "oklch(65% 0.035 55)",
+          "oklch(75% 0.035 55)",
+          "oklch(95% 0.035 55)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Fine Rule",
+        "canonical": "oklch(83% 0.014 240)",
+        "tonalRamp": [
+          "oklch(15% 0.014 240)",
+          "oklch(25% 0.014 240)",
+          "oklch(35% 0.014 240)",
+          "oklch(45% 0.014 240)",
+          "oklch(55% 0.014 240)",
+          "oklch(65% 0.014 240)",
+          "oklch(75% 0.014 240)",
+          "oklch(95% 0.014 240)"
+        ]
+      },
+      "dark-panel": {
+        "role": "neutral",
+        "displayName": "Night Panel",
+        "canonical": "oklch(22% 0.025 240 / 0.9)",
+        "tonalRamp": [
+          "oklch(15% 0.025 240 / 0.9)",
+          "oklch(25% 0.025 240 / 0.9)",
+          "oklch(35% 0.025 240 / 0.9)",
+          "oklch(45% 0.025 240 / 0.9)",
+          "oklch(55% 0.025 240 / 0.9)",
+          "oklch(65% 0.025 240 / 0.9)",
+          "oklch(75% 0.025 240 / 0.9)",
+          "oklch(95% 0.025 240 / 0.9)"
+        ]
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-transition",
+        "value": "160ms ease-out",
+        "purpose": "Quiet hover and interaction feedback."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "460px"
+      },
+      {
+        "name": "small",
+        "value": "560px"
+      },
+      {
+        "name": "medium",
+        "value": "700px"
+      },
+      {
+        "name": "wide",
+        "value": "760px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "A direct action on a light project surface.",
+      "html": "<button class=\"ds-button\">Continue</button>",
+      "css": ".ds-button { min-height: 44px; padding: 8px 16px; border: 1px solid oklch(25% 0.028 240); border-radius: 4px; background: oklch(25% 0.028 240); color: oklch(98% 0.008 90); font: 600 1rem/1.5 'Segoe UI', system-ui, sans-serif; transition: background-color 160ms ease-out; } .ds-button:hover { border-color: oklch(39% 0.055 155); background: oklch(39% 0.055 155); } .ds-button:focus-visible { outline: 3px solid oklch(39% 0.055 155); outline-offset: 3px; } .ds-button:active { transform: scale(0.98); }"
+    },
+    {
+      "name": "Quiet Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "A simple text field for settings and personal input.",
+      "html": "<label class=\"ds-field-label\">City<input class=\"ds-field\" type=\"text\" placeholder=\"Enter a city\"></label>",
+      "css": ".ds-field-label { display: grid; gap: 6px; color: oklch(25% 0.028 240); font: 600 0.9rem/1.4 'Segoe UI', system-ui, sans-serif; } .ds-field { min-height: 44px; padding: 8px 12px; border: 1px solid oklch(83% 0.014 240); border-radius: 4px; background: oklch(94% 0.01 240); color: oklch(25% 0.028 240); font: 400 1rem/1.5 'Segoe UI', system-ui, sans-serif; } .ds-field:focus-visible { outline: 2px solid oklch(39% 0.055 155); outline-offset: 3px; }"
+    },
+    {
+      "name": "Keyboard Key",
+      "kind": "button",
+      "description": "A tactile letter control in Hangman.",
+      "html": "<button class=\"ds-key\" type=\"button\">A</button>",
+      "css": ".ds-key { min-width: 40px; min-height: 44px; border: 1px solid oklch(86% 0.014 240); border-radius: 4px; background: oklch(98% 0.008 90); color: oklch(25% 0.028 240); font: 600 1rem/1 'Segoe UI', system-ui, sans-serif; text-transform: uppercase; } .ds-key:hover { border-color: oklch(25% 0.028 240); } .ds-key:focus-visible { outline: 3px solid oklch(39% 0.055 155); outline-offset: 3px; } .ds-key:active { background: oklch(94% 0.01 240); }"
+    },
+    {
+      "name": "Nonogram Cell",
+      "kind": "button",
+      "description": "A square puzzle cell with selected and incorrect states.",
+      "html": "<button class=\"ds-cell\" type=\"button\" aria-pressed=\"false\" aria-label=\"Row 1, column 1, unmarked\"></button>",
+      "css": ".ds-cell { width: 48px; aspect-ratio: 1; border: 1px solid oklch(83% 0.014 240); background: oklch(98% 0.008 90); cursor: pointer; } .ds-cell:hover { box-shadow: inset 0 0 0 2px oklch(39% 0.055 155); } .ds-cell:focus-visible { outline: 3px solid oklch(39% 0.055 155); outline-offset: 2px; } .ds-cell[aria-pressed='true'] { background: oklch(25% 0.028 240); } .ds-cell[aria-pressed='true'][aria-label$='incorrect'] { background: oklch(38% 0.035 55); }"
+    },
+    {
+      "name": "Night Panel",
+      "kind": "custom",
+      "description": "A flat control panel over the Momentum photograph.",
+      "html": "<aside class=\"ds-panel\"><h2>Settings</h2><p>Choose the details you want to see.</p></aside>",
+      "css": ".ds-panel { width: min(360px, 100%); padding: 18px; border: 1px solid oklch(76% 0.012 90 / 0.36); background: oklch(22% 0.025 240 / 0.9); color: oklch(97% 0.006 90); font: 400 1rem/1.5 'Segoe UI', system-ui, sans-serif; } .ds-panel h2 { margin: 0 0 10px; font-size: 1.1rem; font-weight: 600; } .ds-panel p { margin: 0; color: oklch(82% 0.012 90); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Focused Studio",
+    "overview": "The portfolio is a collection, not a single product shell. Each project keeps its own character while sharing a quiet foundation: clear hierarchy, useful controls, and a restrained palette. The CV uses a more editorial two-column layout; the games keep attention on the puzzle; Momentum preserves its photographic backdrop and puts the clock first.",
+    "keyCharacteristics": [
+      "A muted navy, warm paper, neutral gray, dark green, and brown palette.",
+      "System typography with clear scale and comfortable line spacing.",
+      "Direct feedback, visible keyboard focus, and reduced-motion support.",
+      "Layouts that adapt structurally instead of shrinking controls."
+    ],
+    "rules": [
+      {
+        "name": "The Quiet Contrast Rule",
+        "body": "Keep accents purposeful. If removing a color does not make a state harder to understand, do not use it.",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Family Rule",
+        "body": "Use the system family throughout each project. Let scale and weight, not extra font families, distinguish the work.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Add a layer only when it clarifies a control or keeps content legible.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use semantic HTML, keyboard-operable controls, and visible focus.",
+      "Do keep game instructions and state feedback adjacent to the controls they describe.",
+      "Do respect reduced-motion preferences and keep transitions between 150ms and 250ms.",
+      "Do use project imagery where it carries meaning, especially the CV portrait and Momentum backgrounds.",
+      "Do use the palette tokens as roles, not decoration."
+    ],
+    "donts": [
+      "Don't add cluttered interfaces and unnecessary decoration.",
+      "Don't add excessive gradients, bright accents, and distracting effects.",
+      "Don't add overcomplicated architecture or interactions that obscure each project's purpose.",
+      "Don't use pure black or pure white for large surfaces.",
+      "Don't add decorative motion, nested cards, or colored side stripes."
+    ]
+  }
+}

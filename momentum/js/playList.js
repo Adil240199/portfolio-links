@@ -1,13 +1,20 @@
 const playList = [
   {
     title: "Aqua Caelestis",
-    src: "../assets/sounds/AquaCaelestis.mp3",
-    duration: "00:58",
+    src: "./assets/sounds/assets_sounds_AquaCaelestis.mp3",
+  },
+  {
+    title: "Ennio Morricone",
+    src: "./assets/sounds/assets_sounds_Ennio Morricone.mp3",
   },
   {
     title: "River Flows In You",
-    src: "../assets/sounds/River Flows In You.mp3",
-    duration: "03:50",
+    src: "./assets/sounds/assets_sounds_River Flows In You.mp3",
+  },
+  {
+    title: "Summer Wind",
+    src: "./assets/sounds/assets_sounds_Summer Wind.mp3",
   },
 ];
+
 export default playList;

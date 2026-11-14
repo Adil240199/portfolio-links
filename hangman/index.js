@@ -1,167 +1,126 @@
-const block1 = document.createElement('div');
-block1.classList.add('block1');
-
-const block2 = document.createElement('div');
-block2.classList.add('block2');
-
-document.body.appendChild(block1);
-document.body.appendChild(block2);
-
-const svgHang = document.createElement("object");
-svgHang.setAttribute("data", "./assets/gallows.svg");
-svgHang.setAttribute("type", "image/svg+xml");
-svgHang.classList.add('svgHang');
-
-block1.appendChild(svgHang);
-
-const nameGame = document.createElement('h1');
-nameGame.classList.add('nameGame');
-nameGame.textContent = 'HANGMAN GAME';
-block1.appendChild(nameGame);
-
-const question = document.createElement('h2');
-question.classList.add('hint');
-question.textContent = 'Hint: ?';
-block2.appendChild(question);
-
-const wordBlock = document.createElement('div');
-wordBlock.classList.add('wordBlock');
-block2.appendChild(wordBlock);
-
 const questionsAndAnswers = [
-  { question: 'What is the capital of France?', answer: 'Paris' },
-  { question: 'Which planet is known as the Red Planet?', answer: 'Mars' },
-  { question: 'What is the biggest bird?', answer: 'Ostrich' },
-  { question: 'How many bones are in a shark s body??', answer: 'Zero' },
-  { question: 'What is the chemical symbol for gold?', answer: 'Au' }
+  { question: "What is the capital of France?", answer: "Paris" },
+  { question: "Which planet is known as the Red Planet?", answer: "Mars" },
+  { question: "What is the biggest bird?", answer: "Ostrich" },
+  { question: "How many bones are in a shark's body?", answer: "Zero" },
+  { question: "What is the chemical symbol for gold?", answer: "Au" },
 ];
 
-let currentQuestion = {};
-let incorrectAttempts = 0;
-let answerLetters = [];
-let underscoreSpans = [];
+const hint = document.querySelector("#hint");
+const word = document.querySelector("#word");
+const keyboard = document.querySelector("#keyboard");
+const attemptCount = document.querySelector("#attempt-count");
+const status = document.querySelector("#game-status");
+const nextWordButton = document.querySelector("#next-word");
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+const maxAttempts = 6;
 
-const randomIndex = Math.floor(Math.random() * questionsAndAnswers.length);
-currentQuestion = questionsAndAnswers[randomIndex];
-question.textContent = `Hint: ${currentQuestion.question}`;
+let currentQuestion;
+let incorrectGuesses;
+let guessedLetters;
+let gameComplete;
 
-currentQuestion.answer.split('').forEach(() => {
-  const underscoreSpan = document.createElement('span');
-  underscoreSpan.classList.add('under-score-span');
-  underscoreSpan.textContent = '_';
-  wordBlock.appendChild(underscoreSpan);
-});
+function renderWord() {
+  word.replaceChildren();
 
-document.addEventListener('keydown', function(event) {
-  const guessedLetter = event.key.toLowerCase();
-
-  if (answerLetters.includes(guessedLetter)) {
-    answerLetters.forEach((letter, index) => {
-      if (letter === guessedLetter) {
-        underscoreSpans[index].textContent = letter;
-      }
-    });
-
-    const currentWord = Array.from(underscoreSpans).map(span => span.textContent).join('');
-    if (currentWord === currentQuestion.answer.toLowerCase()) {
-      alert('Congratulations! You guessed the word!');
-      clearAnswerAndGenerateNewQuestion();
-    }
-  } else {
-    incorrectAttempts++;
-    attempt.textContent = `${incorrectAttempts}/6`;
-
-    if (incorrectAttempts === 6) {
-      alert('Game over! You ran out of attempts.');
-      incorrectAttempts = 0;
-      attempt.textContent = `${incorrectAttempts}/6`;
-      clearAnswerAndGenerateNewQuestion();
-    }
+  for (const [index, letter] of [...currentQuestion.answer.toLowerCase()].entries()) {
+    const slot = document.createElement("span");
+    const isRevealed = guessedLetters.has(letter) || gameComplete;
+    slot.className = "game__letter";
+    slot.textContent = isRevealed ? letter : "";
+    slot.setAttribute("aria-label", isRevealed ? letter : `Hidden letter ${index + 1}`);
+    word.appendChild(slot);
   }
-});
 
-console.log(`Answer: ${currentQuestion.answer}`);
+  word.setAttribute("aria-label", `${currentQuestion.answer.length} letter word`);
+}
 
-const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-const keyboard = document.createElement('div');
-keyboard.classList.add('keyboard');
-
-letters.forEach(letter => {
-  const button = document.createElement('button');
-  button.textContent = letter;
-  keyboard.appendChild(button);
-
-  button.addEventListener('click', function() {
-    handleGuess(letter);
+function finishGame(won) {
+  gameComplete = true;
+  keyboard.querySelectorAll("button").forEach((button) => {
+    button.disabled = true;
   });
-});
+  nextWordButton.disabled = false;
+  status.textContent = won
+    ? "Well done. You found the word."
+    : `No guesses left. The word was ${currentQuestion.answer}.`;
+  renderWord();
+}
 
-block2.appendChild(keyboard);
+function updateKeyboard() {
+  keyboard.replaceChildren();
 
-const attemptBlock = document.createElement('div');
-attemptBlock.classList.add('attemptBlock');
-block2.appendChild(attemptBlock);
+  for (const letter of alphabet) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "game__key";
+    button.textContent = letter;
+    button.disabled = guessedLetters.has(letter) || gameComplete;
+    button.setAttribute("aria-label", `Guess ${letter}`);
 
-const attempt = document.createElement('h2');
-attempt.classList.add('attempt');
-attempt.textContent = '0/6';
-
-const inCorrect = document.createElement('h2');
-inCorrect.classList.add('inCorrect');
-inCorrect.textContent = 'Incorrect guesses:';
-attemptBlock.appendChild(inCorrect);
-attemptBlock.appendChild(attempt);
-
-function handleGuess(guessedLetter) {
-  if (answerLetters.includes(guessedLetter)) {
-    answerLetters.forEach((letter, index) => {
-      if (letter === guessedLetter) {
-        underscoreSpans[index].textContent = letter;
-      }
-    });
-
-    const currentWord = Array.from(underscoreSpans).map(span => span.textContent).join('');
-    if (currentWord === currentQuestion.answer.toLowerCase()) {
-      alert('Congratulations! You guessed the word!');
-      clearAnswerAndGenerateNewQuestion();
+    if (guessedLetters.has(letter)) {
+      button.classList.add(currentQuestion.answer.toLowerCase().includes(letter)
+        ? "is-correct"
+        : "is-wrong");
     }
-  } else {
-    incorrectAttempts++;
-    attempt.textContent = `${incorrectAttempts}/6`;
 
-    if (incorrectAttempts === 6) {
-      alert('Game over! You ran out of attempts.');
-      incorrectAttempts = 0;
-      attempt.textContent = `${incorrectAttempts}/6`;
-      clearAnswerAndGenerateNewQuestion();
-    }
+    button.addEventListener("click", () => handleGuess(letter));
+    keyboard.appendChild(button);
   }
 }
 
-function generateRandomQuestion() {
-  const randomIndex = Math.floor(Math.random() * questionsAndAnswers.length);
-  currentQuestion = questionsAndAnswers[randomIndex];
-  question.textContent = `Hint: ${currentQuestion.question}`;
-  wordBlock.innerHTML = '';
-  answerLetters = currentQuestion.answer.toLowerCase().split('');
-  underscoreSpans = [];
+function handleGuess(letter) {
+  if (gameComplete || guessedLetters.has(letter)) return;
 
-  answerLetters.forEach(() => {
-    const underscoreSpan = document.createElement('span');
-    underscoreSpan.classList.add('under-score-span');
-    underscoreSpan.textContent = '_';
-    wordBlock.appendChild(underscoreSpan);
-    underscoreSpans.push(underscoreSpan);
-  });
+  const isCorrect = currentQuestion.answer.toLowerCase().includes(letter);
+  guessedLetters.add(letter);
 
-  console.log(`New Answer: ${currentQuestion.answer}`);
+  if (!isCorrect) {
+    incorrectGuesses += 1;
+    attemptCount.textContent = incorrectGuesses;
+  }
+
+  renderWord();
+  updateKeyboard();
+
+  const foundLetters = [...currentQuestion.answer.toLowerCase()].every((char) =>
+    guessedLetters.has(char)
+  );
+
+  if (foundLetters) {
+    finishGame(true);
+  } else if (incorrectGuesses === maxAttempts) {
+    finishGame(false);
+  } else {
+    status.textContent = isCorrect
+      ? `Letter ${letter} revealed.`
+      : `Letter ${letter} is not in the word.`;
+  }
 }
 
-function clearAnswerAndGenerateNewQuestion() {
-  wordBlock.innerHTML = '';
-  incorrectAttempts = 0;
-  attempt.textContent = `${incorrectAttempts}/6`;
-  generateRandomQuestion();
+function startNewQuestion() {
+  const previousQuestion = currentQuestion;
+  do {
+    currentQuestion =
+      questionsAndAnswers[Math.floor(Math.random() * questionsAndAnswers.length)];
+  } while (questionsAndAnswers.length > 1 && currentQuestion === previousQuestion);
+
+  incorrectGuesses = 0;
+  guessedLetters = new Set();
+  gameComplete = false;
+  hint.textContent = currentQuestion.question;
+  attemptCount.textContent = "0";
+  status.textContent = "";
+  nextWordButton.disabled = true;
+  renderWord();
+  updateKeyboard();
+  keyboard.querySelector("button")?.focus();
 }
 
-generateRandomQuestion();
+document.addEventListener("keydown", (event) => {
+  if (event.repeat || !/^[a-z]$/i.test(event.key)) return;
+  handleGuess(event.key.toLowerCase());
+});
+
+nextWordButton.addEventListener("click", startNewQuestion);
+startNewQuestion();

@@ -1,367 +1,283 @@
-function createElementWithClass(elementType, className) {
-  const element = document.createElement(elementType);
-  element.classList.add(className);
-  return element;
-}
-const blackSound = new Audio("./assets/black.mp3");
-const emptySound = new Audio("./assets/white.mp3");
-const victorySound = new Audio("./assets/win.mp3");
-const click = new Audio("./assets/click.mp3");
-
-function playBlackSound() {
-  blackSound.currentTime = 0;
-  blackSound.play();
-}
-
-function playEmptySound() {
-  emptySound.currentTime = 0;
-  emptySound.play();
-}
-
-function playVictorySound() {
-  victorySound.currentTime = 0;
-  victorySound.play();
-}
-
-function clickSound() {
-  click.currentTime = 0;
-  click.play();
-}
-
-const startBlock = createElementWithClass("div", "startBlock");
-document.body.appendChild(startBlock);
-
-const soundToggle = document.createElement("div");
-soundToggle.id = "soundToggle";
-soundToggle.innerHTML = `
-    <label for="soundCheckbox">Sound:</label>
-    <input type="checkbox" id="soundCheckbox" checked>
-`;
-startBlock.appendChild(soundToggle);
-const soundCheckbox = document.getElementById("soundCheckbox");
-let toggle = true;
-
-const menu = createElementWithClass("ul", "menu");
-startBlock.appendChild(menu);
-
-const pickPictureButton = createElementWithClass("li", "pickPictureButton");
-pickPictureButton.textContent = "Pick Picture";
-menu.appendChild(pickPictureButton);
-
-const blockPicture = createElementWithClass("div", "blockPicture");
-document.body.appendChild(blockPicture);
-
-const restartButton = createElementWithClass("li", "restartButton");
-restartButton.textContent = "Restart";
-menu.appendChild(restartButton);
-
-const pictures = [
-  "./assets/tree.jpg",
-  "./assets/leo.jpg",
-  "./assets/pig.jpg",
-  "./assets/duck.jpg",
-  "./assets/rose.jpg",
+const puzzles = [
+  {
+    name: "Tree",
+    image: "./assets/tree.jpg",
+    solution: [
+      [1, 1, 1, 1, 1],
+      [1, 1, 0, 1, 1],
+      [0, 1, 1, 1, 0],
+      [0, 0, 1, 0, 0],
+      [1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    name: "Lion",
+    image: "./assets/leo.jpg",
+    solution: [
+      [0, 1, 1, 1, 0],
+      [1, 1, 1, 1, 0],
+      [1, 1, 1, 1, 0],
+      [0, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    name: "Pig",
+    image: "./assets/pig.jpg",
+    solution: [
+      [1, 1, 1, 1, 0],
+      [0, 1, 1, 1, 1],
+      [1, 1, 0, 1, 0],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 0],
+    ],
+  },
+  {
+    name: "Duck",
+    image: "./assets/duck.jpg",
+    solution: [
+      [0, 1, 1, 1, 0],
+      [0, 1, 0, 1, 1],
+      [0, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+    ],
+  },
+  {
+    name: "Rose",
+    image: "./assets/rose.jpg",
+    solution: [
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1],
+      [0, 1, 1, 1, 0],
+      [0, 0, 1, 0, 0],
+    ],
+  },
 ];
-pictures.forEach((imageUrl) => {
-  const imgElement = document.createElement("img");
-  imgElement.classList.add("imgElement");
-  imgElement.src = imageUrl;
-  imgElement.alt = "Picture";
-  blockPicture.appendChild(imgElement);
-});
 
-pickPictureButton.addEventListener("click", () => {
-  blockPicture.classList.toggle("visible");
-  if (toggle) {
-    clickSound();
-  }
-});
-const gameGrid = [
-  [1, 1, 1, 1, 1],
-  [1, 1, 0, 1, 1],
-  [0, 1, 1, 1, 0],
-  [0, 0, 1, 0, 0],
-  [1, 1, 1, 1, 1],
-];
-const rowHints = [
-  [2, 1],
-  [3, 1],
-  [1, 3],
-  [3, 1],
-  [2, 1],
-];
-const colHints = [[5], [2, 2], [3], [1], [5]];
-const gameGridOne = [
-  [1, 1, 1, 1, 1],
-  [1, 1, 0, 1, 1],
-  [0, 1, 1, 1, 0],
-  [0, 0, 1, 0, 0],
-  [1, 1, 1, 1, 1],
-];
-const rowHintsOne = [
-  [2, 1],
-  [3, 1],
-  [1, 3],
-  [3, 1],
-  [2, 1],
-];
-const colHintsOne = [[5], [2, 2], [3], [1], [5]];
-const gameGridTwo = [
-  [0, 1, 1, 1, 0],
-  [1, 1, 1, 1, 0],
-  [1, 1, 1, 1, 0],
-  [0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1],
-];
-const rowHintsTwo = [[2, 1], [5], [5], [5], [2]];
-const colHintsTwo = [[3], [4], [4], [4], [5]];
-const gameGridThree = [
-  [1, 1, 1, 1, 0],
-  [0, 1, 1, 1, 1],
-  [1, 1, 0, 1, 0],
-  [1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 0],
-];
-const rowHintsThree = [[1, 3], [5], [2, 2], [5], [1, 1]];
-const colHintsThree = [[4], [4], [2, 1], [5], [4]];
-const gameGridFour = [
-  [0, 1, 1, 1, 0],
-  [0, 1, 0, 1, 1],
-  [0, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1],
-];
-const rowHintsFour = [[2], [5], [1, 3], [5], [4]];
-const colHintsFour = [[3], [1, 2], [4], [5], [5]];
-const gameGridFive = [
-  [1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1],
-  [0, 1, 1, 1, 0],
-  [0, 0, 1, 0, 0],
-];
-const rowHintsFive = [[3], [4], [5], [4], [3]];
-const colHintsFive = [[5], [5], [5], [3], [1]];
+const columnHints = document.querySelector("#column-hints");
+const rowHints = document.querySelector("#row-hints");
+const board = document.querySelector("#game-board");
+const status = document.querySelector("#puzzle-status");
+const durationElement = document.querySelector("#duration");
+const soundCheckbox = document.querySelector("#sound-checkbox");
+const picker = document.querySelector("#puzzle-picker");
+const pickButton = document.querySelector("#pick-picture");
+const restartButton = document.querySelector("#restart");
+const sounds = {
+  fill: new Audio("./assets/black.mp3"),
+  empty: new Audio("./assets/white.mp3"),
+  win: new Audio("./assets/win.mp3"),
+  click: new Audio("./assets/click.mp3"),
+};
 
-const wrapper = createElementWithClass("div", "wrapper");
-document.body.appendChild(wrapper);
+let activePuzzleIndex = 0;
+let cellStates = [];
+let startTime = null;
+let timerInterval = null;
+let soundEnabled = soundCheckbox.checked;
+let puzzleComplete = false;
 
-function updateGameGrid(index) {
-  if (index === 0) {
-    gameGrid.splice(0, gameGrid.length, ...gameGridOne);
-    rowHints.splice(0, rowHints.length, ...rowHintsOne);
-    colHints.splice(0, colHints.length, ...colHintsOne);
-  }
-  if (index === 1) {
-    gameGrid.splice(0, gameGrid.length, ...gameGridTwo);
-    rowHints.splice(0, rowHints.length, ...rowHintsTwo);
-    colHints.splice(0, colHints.length, ...colHintsTwo);
-  }
-  if (index === 2) {
-    gameGrid.splice(0, gameGrid.length, ...gameGridThree);
-    rowHints.splice(0, rowHints.length, ...rowHintsThree);
-    colHints.splice(0, colHints.length, ...colHintsThree);
-  }
-  if (index === 3) {
-    gameGrid.splice(0, gameGrid.length, ...gameGridFour);
-    rowHints.splice(0, rowHints.length, ...rowHintsFour);
-    colHints.splice(0, colHints.length, ...colHintsFour);
-  }
-  if (index === 4) {
-    gameGrid.splice(0, gameGrid.length, ...gameGridFive);
-    rowHints.splice(0, rowHints.length, ...rowHintsFive);
-    colHints.splice(0, colHints.length, ...colHintsFive);
-  }
-}
+function getRuns(cells) {
+  const runs = [];
+  let count = 0;
 
-const rows = createElementWithClass("div", "rows"),
-  flex = createElementWithClass("div", "flex"),
-  colums = createElementWithClass("div", "colums"),
-  container = createElementWithClass("div", "container");
-wrapper.appendChild(rows);
-wrapper.appendChild(flex);
-flex.appendChild(colums);
-flex.appendChild(container);
-
-function displayGame(rowsGame = rowHints) {
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
-  while (colums.firstChild) {
-    colums.removeChild(colums.firstChild);
-  }
-  while (rows.firstChild) {
-    rows.removeChild(rows.firstChild);
-  }
-
-  for (let i = 0; i < rowsGame.length; i++) {
-    const hintRow = document.createElement("div");
-    hintRow.classList.add("hintRow");
-
-    for (let j = 0; j < rowsGame[i].length; j++) {
-      const hintCell = document.createElement("div");
-      hintCell.classList.add("cell");
-      hintCell.classList.add("hintCell");
-      hintCell.innerText = rowsGame[i][j];
-      hintRow.appendChild(hintCell);
-    }
-    rows.appendChild(hintRow);
-  }
-
-  for (let i = 0; i < colHints.length; i++) {
-    const hintCol = document.createElement("div");
-    hintCol.classList.add("hint");
-
-    for (let j = 0; j < colHints[i].length; j++) {
-      const hintCell = document.createElement("div");
-      hintCell.classList.add("cell");
-      hintCell.classList.add("hintCell");
-      hintCell.innerText = colHints[i][j];
-      hintCol.appendChild(hintCell);
-    }
-
-    colums.appendChild(hintCol);
-  }
-
-  for (let i = 0; i < gameGrid.length; i++) {
-    for (let j = 0; j < gameGrid[i].length; j++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
-      cell.classList.add("container_cell");
-      cell.innerText = gameGrid[i][j];
-      container.appendChild(cell);
+  for (const cell of [...cells, 0]) {
+    if (cell) {
+      count += 1;
+    } else if (count > 0) {
+      runs.push(count);
+      count = 0;
     }
   }
-}
-displayGame();
 
-let startTime, durationElement, timerInterval;
-
-durationElement = document.createElement("div");
-durationElement.classList.add("duration");
-startBlock.appendChild(durationElement);
-function startTimer() {
-  startTime = Date.now();
-  updateTimer();
-  timerInterval = setInterval(updateTimer, 1000);
+  return runs.length ? runs : [0];
 }
+
+function getPuzzleColumns(solution) {
+  return solution[0].map((_, columnIndex) =>
+    solution.map((row) => row[columnIndex])
+  );
+}
+
+function renderHints(container, lines, label) {
+  container.replaceChildren();
+
+  lines.forEach((line, index) => {
+    const clue = document.createElement("div");
+    const numbers = getRuns(line);
+    clue.className = "clue-line";
+    clue.setAttribute(
+      "aria-label",
+      `${label} ${index + 1}: ${numbers.filter((number) => number > 0).join(", ") || "no filled cells"}`
+    );
+
+    numbers.forEach((number) => {
+      if (number > 0) {
+        const value = document.createElement("span");
+        value.textContent = number;
+        value.setAttribute("aria-hidden", "true");
+        clue.appendChild(value);
+      }
+    });
+
+    container.appendChild(clue);
+  });
+}
+
+function renderPicker() {
+  picker.replaceChildren();
+
+  puzzles.forEach((puzzle, index) => {
+    const button = document.createElement("button");
+    const image = document.createElement("img");
+    const name = document.createElement("span");
+
+    button.type = "button";
+    button.className = `puzzle-choice${index === activePuzzleIndex ? " is-active" : ""}`;
+    button.setAttribute("aria-pressed", String(index === activePuzzleIndex));
+    image.src = puzzle.image;
+    image.alt = "";
+    name.textContent = puzzle.name;
+    button.append(image, name);
+    button.addEventListener("click", () => {
+      if (soundEnabled) playSound(sounds.click);
+      activePuzzleIndex = index;
+      picker.hidden = true;
+      pickButton.setAttribute("aria-expanded", "false");
+      renderPuzzle();
+    });
+    picker.appendChild(button);
+  });
+}
+
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play();
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = String(seconds % 60).padStart(2, "0");
+  return `${minutes}:${remainingSeconds}`;
+}
+
 function updateTimer() {
-  const currentTime = Date.now();
-  const elapsedTime = currentTime - startTime;
-
-  const elapsedSeconds = Math.floor(elapsedTime / 1000);
-  const minutes = Math.floor(elapsedSeconds / 60);
-  const seconds = elapsedSeconds % 60;
-
-  durationElement.textContent = `${minutes}:${
-    seconds < 10 ? "0" : ""
-  }${seconds}`;
-}
-
-function displayDuration() {
-  clearInterval(timerInterval);
-  updateTimer();
-
-  const endTime = Date.now();
-  const durationInSeconds = Math.floor((endTime - startTime) / 1000);
-
-  const minutes = Math.floor(durationInSeconds / 60);
-  const seconds = durationInSeconds % 60;
-
-  durationElement.textContent = `${minutes}:${
-    seconds < 10 ? "0" : ""
-  }${seconds}`;
+  if (startTime === null) return;
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  durationElement.textContent = formatTime(elapsed);
 }
 
 function resetTimer() {
-  clearInterval(timerInterval);
+  window.clearInterval(timerInterval);
+  timerInterval = null;
+  startTime = null;
+  durationElement.textContent = "0:00";
+}
 
-  if (durationElement) {
-    durationElement.textContent = "";
+function startTimer() {
+  if (startTime !== null) return;
+  startTime = Date.now();
+  updateTimer();
+  timerInterval = window.setInterval(updateTimer, 1000);
+}
+
+function isSolved(solution) {
+  return solution.every((row, rowIndex) =>
+    row.every((answer, columnIndex) =>
+      answer === 0 || cellStates[rowIndex][columnIndex] === 1
+    )
+  );
+}
+
+function updateCellLabel(cell, rowIndex, columnIndex, state, answer) {
+  const mark = state ? "selected" : "unmarked";
+  const result = state === 1 && answer === 0 ? ", incorrect" : "";
+  cell.setAttribute(
+    "aria-label",
+    `Row ${rowIndex + 1}, column ${columnIndex + 1}, ${mark}${result}`
+  );
+  cell.setAttribute("aria-pressed", String(state !== 0));
+}
+
+function markCell(rowIndex, columnIndex, cell) {
+  if (puzzleComplete) return;
+  startTimer();
+
+  const currentState = cellStates[rowIndex][columnIndex];
+  const nextState = currentState === 0 ? 1 : 0;
+  const answer = puzzles[activePuzzleIndex].solution[rowIndex][columnIndex];
+  cellStates[rowIndex][columnIndex] = nextState;
+  cell.classList.toggle("is-filled", nextState === 1 && answer === 1);
+  cell.classList.toggle("is-mistake", nextState === 1 && answer === 0);
+  updateCellLabel(cell, rowIndex, columnIndex, nextState, answer);
+
+  if (soundEnabled) {
+    playSound(answer === 1 ? sounds.fill : sounds.empty);
   }
 
-  startTime = null;
+  if (isSolved(puzzles[activePuzzleIndex].solution)) {
+    puzzleComplete = true;
+    window.clearInterval(timerInterval);
+    updateTimer();
+    if (soundEnabled) playSound(sounds.win);
+    status.textContent = `Puzzle solved in ${durationElement.textContent}. Choose another picture or restart.`;
+    board.querySelectorAll("button").forEach((button) => {
+      button.disabled = true;
+    });
+  } else {
+    status.textContent = "Keep going. The clues show runs of filled squares.";
+  }
 }
-function checkSolution() {
-  const cells = document.querySelectorAll(".container .cell");
 
-  const handleClick = () => {
-    let allCellsHaveWinClass = true;
+function renderBoard(solution) {
+  board.replaceChildren();
 
-    cells.forEach((cell) => {
-      const content = cell.innerText.trim();
+  solution.forEach((row, rowIndex) => {
+    const boardRow = document.createElement("div");
+    boardRow.className = "board-row";
+    boardRow.setAttribute("role", "row");
 
-      if (content === "1" && !cell.classList.contains("win")) {
-        allCellsHaveWinClass = false;
-        return;
-      }
+    row.forEach((answer, columnIndex) => {
+      const cell = document.createElement("button");
+      cell.type = "button";
+      cell.className = "board-cell";
+      cell.setAttribute("role", "gridcell");
+      updateCellLabel(cell, rowIndex, columnIndex, 0, answer);
+      cell.addEventListener("click", () => markCell(rowIndex, columnIndex, cell));
+      boardRow.appendChild(cell);
     });
 
-    if (allCellsHaveWinClass) {
-      const endTime = Date.now();
-      const durationInSeconds = Math.floor((endTime - startTime) / 1000);
-      if (toggle) {
-        playVictorySound();
-      }
-      displayDuration();
-      alert(
-        `Great! You have solved the nonogram in ${durationInSeconds} seconds!`
-      );
-      document.removeEventListener("click", handleClick);
-    }
-  };
-
-  document.addEventListener("click", handleClick);
-
-  cells.forEach((cell) => {
-    cell.addEventListener("click", () => {
-      const content = cell.innerText.trim();
-      if (!startTime) {
-        startTimer();
-      }
-      if (content === "1") {
-        cell.classList.toggle("win");
-        if (toggle) {
-          playBlackSound();
-        }
-      } else {
-        cell.classList.toggle("loss");
-        if (toggle) {
-          playEmptySound();
-        }
-      }
-    });
+    board.appendChild(boardRow);
   });
 }
-checkSolution();
 
-const images = document.querySelectorAll(".imgElement");
-images.forEach((img, index) => {
-  img.addEventListener("click", () => {
-    if (toggle) {
-      clickSound();
-    }
-    updateGameGrid(index);
-    displayGame();
-    checkSolution();
-    blockPicture.classList.toggle("visible");
-    resetTimer();
-  });
+function renderPuzzle() {
+  const puzzle = puzzles[activePuzzleIndex];
+  cellStates = puzzle.solution.map((row) => row.map(() => 0));
+  puzzleComplete = false;
+  resetTimer();
+  status.textContent = `Solve the ${puzzle.name.toLowerCase()} using the row and column clues.`;
+  renderHints(columnHints, getPuzzleColumns(puzzle.solution), "Column");
+  renderHints(rowHints, puzzle.solution, "Row");
+  renderBoard(puzzle.solution);
+  renderPicker();
+}
+
+pickButton.addEventListener("click", () => {
+  picker.hidden = !picker.hidden;
+  pickButton.setAttribute("aria-expanded", String(!picker.hidden));
 });
 
 restartButton.addEventListener("click", () => {
-  if (toggle) {
-    clickSound();
-  }
-  resetTimer();
-  updateGameGrid();
-  displayGame();
-  checkSolution();
+  if (soundEnabled) playSound(sounds.click);
+  renderPuzzle();
 });
 
 soundCheckbox.addEventListener("change", () => {
-  toggle === false ? (toggle = true) : (toggle = false);
-  if (toggle) {
-    clickSound();
-  }
+  soundEnabled = soundCheckbox.checked;
+  if (soundEnabled) playSound(sounds.click);
 });
+
+renderPuzzle();

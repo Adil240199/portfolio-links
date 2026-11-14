@@ -1,13 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4f0">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/png" href="./assets/hang-man.png">
-    <title>Hangman Game</title>
-</head>
-<body>
+    <title>Hangman | Word Game</title>
+  </head>
+  <body>
+    <main class="game">
+      <header class="game__header">
+        <p class="game__eyebrow">Word game</p>
+        <h1>Hangman</h1>
+        <p class="game__attempts">Wrong guesses <span id="attempt-count">0</span> / 6</p>
+      </header>
+
+      <section class="game__play" aria-label="Hangman puzzle">
+        <div class="game__illustration">
+          <object class="game__gallows" data="./assets/gallows.svg" type="image/svg+xml" aria-label="Hangman gallows"></object>
+          <p class="game__hint"><span>Hint</span><span id="hint"></span></p>
+        </div>
+
+        <div class="game__controls">
+          <div class="game__word" id="word" role="group" aria-label="Hidden word"></div>
+          <div class="game__keyboard" id="keyboard" aria-label="Choose a letter"></div>
+          <p class="game__status" id="game-status" role="status" aria-live="polite"></p>
+          <button class="game__next" id="next-word" type="button" disabled>Next word</button>
+        </div>
+      </section>
+    </main>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>

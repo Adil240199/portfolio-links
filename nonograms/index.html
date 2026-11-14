@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f4f0">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/png" href="./assets/game.png">
-    <title>Nonograms</title>
-</head>
-<body>
-   <script src="./index.js"></script> 
-</body>
+    <title>Nonograms | Logic puzzle</title>
+  </head>
+  <body>
+    <div class="puzzle-app">
+      <header class="puzzle-header">
+        <div>
+          <p class="puzzle-eyebrow">Logic puzzle</p>
+          <h1>Nonograms</h1>
+        </div>
+        <div class="puzzle-tools">
+          <label class="sound-toggle" for="sound-checkbox">
+            <input type="checkbox" id="sound-checkbox" checked>
+            <span>Sound</span>
+          </label>
+          <output class="duration" id="duration" aria-label="Time elapsed">0:00</output>
+        </div>
+      </header>
+
+      <main>
+        <div class="puzzle-actions">
+          <button class="action-button" id="pick-picture" type="button" aria-controls="puzzle-picker" aria-expanded="false">Choose picture</button>
+          <button class="action-button action-button--quiet" id="restart" type="button">Restart puzzle</button>
+        </div>
+
+        <section class="puzzle-picker" id="puzzle-picker" aria-label="Choose a puzzle" hidden></section>
+        <p class="puzzle-status" id="puzzle-status" role="status" aria-live="polite">Fill the squares that match the clues.</p>
+
+        <section class="puzzle-layout" aria-label="Nonogram puzzle">
+          <div class="puzzle-corner" aria-hidden="true"></div>
+          <div class="column-hints" id="column-hints" aria-label="Column clues"></div>
+          <div class="row-hints" id="row-hints" aria-label="Row clues"></div>
+          <div class="game-board" id="game-board" role="grid" aria-label="Puzzle board"></div>
+        </section>
+        <p class="puzzle-help">Select a square to mark it. Select again to clear it.</p>
+      </main>
+    </div>
+    <script src="./index.js"></script>
+  </body>
 </html>

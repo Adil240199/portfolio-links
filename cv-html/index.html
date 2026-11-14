@@ -1,128 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <link rel="icon" type="image/svg" href="./img/svg/Avatar.svg">
-  <title>Resume</title>
-</head>
-<body>
-  <section class="resume">
-    <aside class="resume__sidebar">
-      <img class="resume__photo" src="./img/photo.jpeg" alt="Profile Photo">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Adil's front-end developer CV and selected projects.">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/svg+xml" href="./img/svg/Avatar.svg">
+    <title>Adil | Front-end Developer</title>
+  </head>
+  <body>
+    <main class="resume">
+      <aside class="resume__sidebar" aria-label="Profile and contact information">
+        <img class="resume__photo" src="./img/photo.jpeg" alt="Portrait of Adil">
 
-      <nav class="resume__section">
-        <h3 class="resume__section-title">Contacts</h3>
-        <ul class="resume__list">
-          <li class="resume__list-item">
-            <img class="resume__icon" src="./img/svg/mdi_call.svg" alt="Phone">
-            <a class="resume__link" href="tel:+36705854018">+36 70 585 4018</a>
-          </li>
-          <li class="resume__list-item">
-            <img class="resume__icon" src="./img/svg/mdi_mail.svg" alt="Email">
-            <a class="resume__link" href="mailto:adik.muhametov@gmail.com">adik.muhametov@gmail.com</a>
-          </li>
-          <li class="resume__list-item">
-            <img class="resume__icon" src="./img/svg/Symbol.svg" alt="Discord">
-            <p class="resume__text">Adil (Adil240199)Kz</p>
-          </li>
-        </ul>
-      </nav>
+        <section class="resume__section">
+          <h2 class="resume__section-title">Contact</h2>
+          <ul class="resume__list resume__contacts">
+            <li><a href="tel:+36705854018">+36 70 585 4018</a></li>
+            <li><a href="mailto:adik.muhametov@gmail.com">adik.muhametov@gmail.com</a></li>
+            <li><span>Discord: Adil (Adil240199)Kz</span></li>
+          </ul>
+        </section>
 
-      <nav class="resume__section">
-        <h3 class="resume__section-title">Skills</h3>
-        <ul class="resume__list">
-          <li class="resume__list-item">
-            <h6 class="resume__skill-name">English</h6>
-            <div class="resume__progress">
-              <progress class="resume__progress-bar" value="50" max="100"></progress>
-              <p class="resume__skill-level">Intermediate</p>
-            </div>
-          </li>
-          <li class="resume__list-item">
-            <h6 class="resume__skill-name">JavaScript</h6>
-            <div class="resume__progress">
-              <progress class="resume__progress-bar" value="70" max="100"></progress>
-              <p class="resume__skill-level">Normal</p>
-            </div>
-          </li>
-          <li class="resume__list-item">
-            <h6 class="resume__skill-name">HTML</h6>
-            <div class="resume__progress">
-              <progress class="resume__progress-bar" value="75" max="100"></progress>
-              <p class="resume__skill-level">Good</p>
-            </div>
-          </li>
-          <li class="resume__list-item">
-            <h6 class="resume__skill-name">CSS</h6>
-            <div class="resume__progress">
-              <progress class="resume__progress-bar" value="70" max="100"></progress>
-              <p class="resume__skill-level">Good</p>
-            </div>
-          </li>
-        </ul>
-      </nav>
+        <section class="resume__section">
+          <h2 class="resume__section-title">Skills</h2>
+          <ul class="resume__list resume__skill-list">
+            <li>
+              <div class="resume__skill"><span>English</span><span>Intermediate</span></div>
+              <progress aria-label="English: intermediate" value="50" max="100">50%</progress>
+            </li>
+            <li>
+              <div class="resume__skill"><span>JavaScript</span><span>Normal</span></div>
+              <progress aria-label="JavaScript: normal" value="70" max="100">70%</progress>
+            </li>
+            <li>
+              <div class="resume__skill"><span>HTML</span><span>Good</span></div>
+              <progress aria-label="HTML: good" value="75" max="100">75%</progress>
+            </li>
+            <li>
+              <div class="resume__skill"><span>CSS</span><span>Good</span></div>
+              <progress aria-label="CSS: good" value="70" max="100">70%</progress>
+            </li>
+          </ul>
+        </section>
 
-      <div class="projects">
-        <h3 class="projects__title">School Projects</h3>
-        <ul class="projects__list">
-    <li><a class="projects__link" href="https://kancelariahasso.pl/">Kancelaria Hasso Website</a></li>
-    <li><a class="projects__link" href="https://school-drab-nine.vercel.app/">English School Platform</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/coffee-house/home.html">Coffee House Landing Page</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/momentum/">Momentum App</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/hangman/">Hangman Game</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/nonograms/">Nonograms Puzzle Game</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/Works/">Demo School Project</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/online-zoo/pages/main/">Online Zoo Page</a></li>
-    <li><a class="projects__link" href="https://adil240199.github.io/portfolio-links/travel/">Travel Landing Page</a></li>
-        </ul>
-</div>
-    </aside>
+        <nav class="resume__section" aria-label="Selected projects">
+          <h2 class="resume__section-title">Selected projects</h2>
+          <ul class="resume__list resume__projects">
+            <li><a href="https://kancelariahasso.pl/">Kancelaria Hasso Website</a></li>
+            <li><a href="https://school-drab-nine.vercel.app/">English School Platform</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/coffee-house/home.html">Coffee House Landing Page</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/momentum/">Momentum App</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/hangman/">Hangman Game</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/nonograms/">Nonograms Puzzle Game</a></li>
+            <li><a href="https://adil240199.github.io/Works/">Demo School Project</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/online-zoo/pages/main/">Online Zoo Page</a></li>
+            <li><a href="https://adil240199.github.io/portfolio-links/travel/">Travel Landing Page</a></li>
+          </ul>
+        </nav>
+      </aside>
 
-    <main class="resume__main">
-      <section class="skills">
-        <h3 class="skills__title">Hard Skills</h3>
-        <ul class="skills__list">
-          <li class="skills__item">HTML5, CSS3 (SCSS, Modules)</li>
-          <li class="skills__item">JavaScript (ES6+), TypeScript</li>
-          <li class="skills__item">React, Redux, Next.js</li>
-          <li class="skills__item">Node.js (basic)</li>
-          <li class="skills__item">React Hooks, Functional Components</li>
-        </ul>
+      <div class="resume__content">
+        <header class="resume__heading">
+          <p class="resume__eyebrow">Curriculum vitae</p>
+          <h1>Adil</h1>
+          <p class="resume__role">Front-end Developer</p>
+        </header>
 
-        <h3 class="skills__title">Soft Skills</h3>
-        <ul class="skills__list">
-          <li class="skills__item">Teamwork and communication</li>
-          <li class="skills__item">Problem-solving</li>
-          <li class="skills__item">Stress resistance</li>
-          <li class="skills__item">Self-motivation and punctuality</li>
-          <li class="skills__item">Eager to learn and improve</li>
-        </ul>
-      </section>
+        <section class="resume__section">
+          <h2 class="resume__section-title">Technical skills</h2>
+          <ul class="resume__list resume__detail-list">
+            <li>HTML5, CSS3 (SCSS, Modules)</li>
+            <li>JavaScript (ES6+), TypeScript</li>
+            <li>React, Redux, Next.js</li>
+            <li>Node.js (basic)</li>
+            <li>React Hooks, Functional Components</li>
+          </ul>
+        </section>
 
-      <section class="code-examples">
-        <h3 class="skills__title">Code Examples</h3>
-        <div class="code-examples__block">
-          <pre><code>function boolToWord(bool) {
+        <section class="resume__section">
+          <h2 class="resume__section-title">Strengths</h2>
+          <ul class="resume__list resume__detail-list">
+            <li>Teamwork and communication</li>
+            <li>Problem-solving</li>
+            <li>Stress resistance</li>
+            <li>Self-motivation and punctuality</li>
+            <li>Eager to learn and improve</li>
+          </ul>
+        </section>
+
+        <section class="resume__section">
+          <h2 class="resume__section-title">Code examples</h2>
+          <div class="resume__code-examples">
+            <pre><code>function boolToWord(bool) {
   return bool ? "Yes" : "No";
 }</code></pre>
-
-          <pre><code>function multiply(a, b) {
+            <pre><code>function multiply(a, b) {
   return a * b;
 }</code></pre>
-        </div>
-      </section>
-    </main>
+          </div>
+        </section>
 
-    <footer class="footer">
-      <ul class="footer__socials">
-        <li><a href="https://rs.school/js-stage0/"><img class="footer__icon" src="./img/svg/rs_school_js.svg" alt="RSSchool"></a></li>
-        <li><a href="https://github.com/Adil240199?tab=repositories"><img class="footer__icon" src="./img/svg/Octocat.png" alt="GitHub"></a></li>
-        <li><a href="https://discord.gg/CFQhqw2G"><img class="footer__icon" src="./img/svg/discord-icon.svg" alt="Discord"></a></li>
-      </ul>
-    </footer>
-  </section>
-</body>
+        <footer class="resume__footer">
+          <ul class="resume__socials">
+            <li><a href="https://rs.school/js-stage0/" aria-label="RS School"><img src="./img/svg/rs_school_js.svg" alt=""></a></li>
+            <li><a href="https://github.com/Adil240199?tab=repositories" aria-label="GitHub"><img src="./img/svg/Octocat.png" alt=""></a></li>
+            <li><a href="https://discord.gg/CFQhqw2G" aria-label="Discord"><img src="./img/svg/discord-icon.svg" alt=""></a></li>
+          </ul>
+        </footer>
+      </div>
+    </main>
+  </body>
 </html>
