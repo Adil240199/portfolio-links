@@ -2,7 +2,6 @@
 
 ### 🔹 [Kancelaria Hasso Website](https://kancelariahasso.pl/)
 - **Tech Stack**: Next.js, React, TypeScript, CSS MODULES 
-- **GitHub**: [View Code](https://github.com/Adil240199/project-nextjs)
 
 ---
 
