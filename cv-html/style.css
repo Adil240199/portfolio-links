@@ -264,15 +264,12 @@ a:focus-visible {
 }
 
 @media (max-width: 460px) {
-  .resume__sidebar {
-    grid-template-columns: 1fr;
-  }
-
   .resume__photo {
     width: min(100%, 220px);
     grid-row: auto;
   }
 
+  .resume__sidebar,
   .resume__detail-list,
   .resume__code-examples {
     grid-template-columns: 1fr;

@@ -611,9 +611,6 @@ header .burgerButtonActive:after {
   }
 }
 @media (max-width: 380px) {
-  .imgBig {
-    width: 100%;
-  }
   img {
     margin-top: -14px;
     margin-left: -151px;

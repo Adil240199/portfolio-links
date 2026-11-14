@@ -365,11 +365,13 @@ button:disabled {
   object-fit: contain;
 }
 
-.setting-icon {
+.setting-icon,
+.setting {
   right: 1.5rem;
 }
 
-.todo-toggle {
+.todo-toggle,
+.todo_list {
   left: 1.5rem;
 }
 
@@ -397,14 +399,6 @@ button:disabled {
   pointer-events: auto;
   visibility: visible;
   transform: translateY(0);
-}
-
-.setting {
-  right: 1.5rem;
-}
-
-.todo_list {
-  left: 1.5rem;
 }
 
 .panel-header {
@@ -607,10 +601,7 @@ button:disabled {
     background-size: 1.15rem;
   }
 
-  .play-list {
-    display: none;
-  }
-
+  .play-list,
   .player-message {
     display: none;
   }
@@ -644,10 +635,7 @@ button:disabled {
     align-items: start;
   }
 
-  .player {
-    width: 45%;
-  }
-
+  .player,
   .weather {
     width: 45%;
   }
@@ -688,21 +676,18 @@ button:disabled {
     bottom: 4.75rem;
   }
 
-  .setting {
-    right: 0.75rem;
-  }
-
-  .todo_list {
-    left: 0.75rem;
-  }
-
+  .setting,
   .setting-icon {
     right: 0.75rem;
-    bottom: 0.75rem;
   }
 
+  .todo_list,
   .todo-toggle {
     left: 0.75rem;
+  }
+
+  .setting-icon,
+  .todo-toggle {
     bottom: 0.75rem;
   }
 }
