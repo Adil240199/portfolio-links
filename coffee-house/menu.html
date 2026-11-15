@@ -28,10 +28,10 @@
         </div>
         <div class="adaptivMenu">
           <nav class="navHeader">
-            <a class="linkHeader" href="#FavouritesCoffee">Favorite coffee</a>
-            <a class="linkHeader" href="#About">About</a>
-            <a class="linkHeader" href="#MobileApp">Mobile app</a>
-            <a class="linkHeader" href="#">Contact us</a>
+            <a class="linkHeader" href="./home.html#FavouritesCoffee">Favorite coffee</a>
+            <a class="linkHeader" href="./home.html#About">About</a>
+            <a class="linkHeader" href="./home.html#MobileApp">Mobile app</a>
+            <a class="linkHeader" href="#footer">Contact us</a>
           </nav>
           <div class="rightLinkHeader">
             <a class="linkMenu" href="./menu.html">Menu</a>
@@ -42,7 +42,7 @@
             />
           </div>
         </div>
-        <div class="burgerButton burgerButtonMain"></div>
+        <button class="burgerButton" type="button" aria-label="Open menu" aria-expanded="false"></button>
       </header>
       <div class="offer">
         <h1>
@@ -50,7 +50,7 @@
           hides an <span class="amazingWord">amazing surprise</span>
         </h1>
         <div class="kinds">
-          <div class="kind" data-category="coffee">
+          <button class="kind" type="button" data-category="coffee">
             <div class="wrapperImg">
               <img
                 src="./assets/coffeekind.svg"
@@ -58,24 +58,24 @@
                 class="imgDrink"
               />
             </div>
-            <p class="nameKind nameKindActive">Coffee</p>
-          </div>
-          <div class="kind" data-category="tea">
+            <span class="nameKind">Coffee</span>
+          </button>
+          <button class="kind" type="button" data-category="tea">
             <div class="wrapperImg">
               <img src="./assets/tea.svg" alt="tea" class="imgDrink" />
             </div>
-            <p class="nameKind">Tea</p>
-          </div>
-          <div class="kind" data-category="dessert">
+            <span class="nameKind">Tea</span>
+          </button>
+          <button class="kind" type="button" data-category="dessert">
             <div class="wrapperImg">
               <img src="./assets/dessert.svg" alt="dessert" class="imgDrink" />
             </div>
-            <p class="nameKind">Dessert</p>
-          </div>
+            <span class="nameKind">Dessert</span>
+          </button>
         </div>
       </div>
       <div class="catalog"></div>
-      <a class="refresh" href="#">
+      <button class="refresh" type="button" aria-label="Show more">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -96,7 +96,7 @@
             stroke-linejoin="round"
           />
         </svg>
-      </a>
+      </button>
       <footer id="footer">
         <div class="blockleft">
           <h4>
@@ -196,6 +196,7 @@
         </div>
       </footer>
     </div>
+    <script src="./nav.js"></script>
     <script src="./menu.js" defer></script>
   </body>
 </html>

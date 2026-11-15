@@ -52,22 +52,23 @@ const sliderLine = document.querySelector('.destination'),
      }
       centrButton.addEventListener('click',centrbutton)
 
-      let offset = 0;
+      let slideIndex = 0;
+      const slidesCount = 3;
+      const showMobileSlide = () => {
+        sliderLine.style.left = -slideIndex * sliderLine.parentElement.clientWidth + 'px';
+      };
+
       document.querySelector(".arrow").addEventListener('click' , function(){
-            offset += 395;
-            if(offset>790){
-              offset = 0
-            }
-            sliderLine.style.left = -offset + 'px'
+            slideIndex = (slideIndex + 1) % slidesCount;
+            showMobileSlide();
       });
 
       document.querySelector(".arrow_one").addEventListener('click' , function(){
-            offset -= 395;
-            if(offset < 0 ){
-              offset = 790;
-            }
-            sliderLine.style.left = -offset + 'px'
+            slideIndex = (slideIndex - 1 + slidesCount) % slidesCount;
+            showMobileSlide();
       });
+
+      window.addEventListener('resize', showMobileSlide);
 
 
 

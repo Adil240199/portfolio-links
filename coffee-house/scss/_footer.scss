@@ -1,155 +1,102 @@
+@use "./mixin" as *;
+
 footer {
-  margin: 96px auto;
   display: flex;
-  height: auto;
-  padding: 100px;
+  flex-wrap: wrap;
+  gap: 40px clamp(40px, 7vw, 100px);
+  margin: clamp(56px, 7vw, 96px) 0 0;
+  padding: clamp(28px, 6vw, 100px);
   border-radius: 40px;
-  gap: 99.5px;
-  background-color: rgba(102, 95, 85, 1);
-  @media (max-width: 768px) {
-    display: block;
-    max-width: 82.5%;
-    margin-top: 104px;
-    padding: 60px;
-  }
-  @media (max-width: 380px) {
-    padding: 0px;
-    margin-top: 100px;
-    padding-top: 39.5px;
-    padding-bottom: 36px;
-    min-width: 100%;
+  background-color: var(--stone);
+  color: var(--sand);
+
+  @include tablet {
+    border-radius: 24px;
   }
 
-  .blockleft {
-    @media (max-width: 380px) {
-      padding-left: 16px;
+  .blockleft h4 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .coffeeTimeWord {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .blockIconsSocial {
+    display: flex;
+    gap: 10px;
+    margin-top: 40px;
+  }
+
+  .wrappericon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    transition: background-color 0.3s;
+
+    svg {
+      width: 24px;
+      height: 24px;
     }
-    h4 {
-      margin: 0px;
-      font-size: 3.75em;
-      font-weight: 600;
-      line-height: 75px;
-      letter-spacing: 0em;
-      text-align: left;
-      color: rgba(225, 212, 201, 1);
-      @media (max-width: 768px) {
-        margin-top: 7%;
-      }
-      @media (max-width: 380px) {
-        font-size: 2em;
-        line-height: 40px;
-      }
-      .coffeeTimeWord {
-        font-style: italic;
-        color: rgba(176, 144, 122, 1);
-        margin-left: -6px;
-      }
-    }
-    .blockIconsSocial {
-      display: flex;
-      gap: 10px;
-      margin-top: 40px;
-      .wrappericon {
-        width: 60px;
-        height: 60px;
-        border-radius: 100px;
-        border: 1px solid rgba(193, 182, 173, 1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-          width: 24px;
-          height: 24px;
-        }
-      }
-      @media (min-width: 381px) {
-        .wrappericon:hover {
-          background-color: rgba(225, 212, 201, 1);
-          cursor: pointer;
-          .iconSocMedia {
-            stroke: rgba(64, 63, 61, 1);
-          }
-        }
+
+    @include hover {
+      background-color: var(--sand);
+
+      .iconSocMedia {
+        stroke: var(--ink);
       }
     }
   }
+
   .blockRight {
-    padding: 34px 0 0 37px;
-    @media (max-width: 768px) {
-      margin: 17.6% 0 8% 0;
-      padding-left: 0;
+    display: grid;
+    align-content: start;
+    gap: 20px;
+    padding-top: 34px;
+
+    @include tablet {
       padding-top: 0;
     }
-    @media (max-width: 380px) {
-      margin-top: 11.1%;
-      padding-left: 16px;
-    }
-    .h5 {
-      margin: 0px;
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 30px;
-      letter-spacing: 0em;
-      text-align: left;
-      color: rgba(225, 212, 201, 1);
-      margin-top: 32px;
-    }
-    .informAndContact {
-      position: relative;
-      display: flex;
-      gap: 7px;
-      padding-top: 39px;
-      cursor: pointer;
-      line-height: 1;
+  }
 
-      .textContact {
-        margin: 0px;
-        margin-left: 3px;
+  .h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 30px;
+  }
 
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 24px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: rgba(225, 212, 201, 1);
-        content: "";
-        transition: width 0.3s ease-out;
-      }
-      .textContact:after {
-        display: block;
-        position: absolute;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: rgba(225, 212, 201, 1);
-        content: "";
-        transition: width 0.3s ease-out;
-      }
+  .informAndContact a,
+  .informAndContactLast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-      @media (min-width: 381px) {
-        .textContact:hover:after,
-        .textContact:focus:after {
-          width: 70%;
-        }
-      }
-      .schedule {
-        margin-left: 0px;
-      }
+  .iconContact {
+    flex: none;
+    width: 30px;
+  }
 
-      @media (min-width: 381px) {
-        .schedule:hover:after,
-        .schedule:focus:after {
-          width: 105%;
-        }
-      }
-    }
+  .textContact {
+    font-weight: 600;
+    line-height: 24px;
+  }
 
-    .informAndContactFirst,
-    .informAndContactLast {
-      padding-top: 20px;
-    }
-    .iconContact {
-      width: 30px;
-    }
+  .informAndContact a .textContact {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
+    transition: background-size 0.3s;
+  }
+
+  .informAndContact a:hover .textContact,
+  .informAndContact a:focus-visible .textContact {
+    background-size: 100% 2px;
   }
 }

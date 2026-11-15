@@ -1,29 +1,22 @@
-@mixin flexCenter($justify: center, $align: center) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
-}
+$tablet: 768px;
+$phone: 480px;
 
-@mixin mobile($max: 768px) {
-  @media (max-width: $max) {
+@mixin tablet {
+  @media (max-width: $tablet) {
     @content;
   }
 }
 
-@mixin center {
-  margin: 0 auto;
+@mixin phone {
+  @media (max-width: $phone) {
+    @content;
+  }
 }
 
-@mixin textStyle($size, $weight: 400, $line: normal) {
-  font-size: $size;
-  font-weight: $weight;
-  line-height: $line;
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
 }
-
-@mixin positionAbsolute($top) {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: $top;
-}
-

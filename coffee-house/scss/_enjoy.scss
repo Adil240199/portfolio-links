@@ -1,144 +1,86 @@
+@use "./mixin" as *;
+
 .Enjoy {
-  width: 100%;
-  max-width: 1360px;
+  position: relative;
   margin-top: 17px;
+  padding: clamp(32px, 5vw, 56px) 0 clamp(40px, 7vw, 100px);
   border-radius: 40px;
-  padding-top: 56px;
-  padding-bottom: 100px;
   overflow: hidden;
-  position: relative;
-}
+  background-color: var(--stone);
 
-.Enjoy video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.offerBlock {
-  z-index: 3;
-  width: 90%;
-  height: auto;
-  margin-left: 7.3%;
-  position: relative;
-}
-
-.offerBlock h1 {
-  font-size: 4.5em;
-  font-weight: 600;
-  line-height: 76px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-
-.offerBlock .underText {
-  margin-top: -9px;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-
-.offerBlock h1,
-.offerBlock .underText {
-  color: rgba(225, 212, 201, 1);
-}
-
-.menuButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  width: 200px;
-  height: 64px;
-  border-radius: 100px;
-  background-color: rgba(225, 212, 201, 1);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-left: 7.3%;
-  position: relative;
-  margin-top: 40px;
-}
-
-.menuButton a {
-  color: rgba(64, 63, 61, 1);
-}
-
-.menuButton .coffeeIconEnjoy {
-  position: absolute;
-  right: 64px;
-  opacity: 0;
-}
-
-.menuButton:hover .coffeeIconEnjoy {
-  display: block;
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .Enjoy {
-    margin-top: 19px;
-    background-size: 100% 100%;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border-radius: 0px;
+  @include tablet {
+    border-radius: 24px;
   }
 
-  .offerBlock {
-    width: 90%;
-    margin-left: 9%;
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .offerBlock,
+  .menuButton {
+    position: relative;
+    margin-left: clamp(20px, 7.3%, 100px);
+    margin-right: 20px;
   }
 
   .offerBlock h1 {
-    font-size: 2rem;
-    line-height: 2rem;
+    margin: 0;
+    color: var(--sand);
+    font-size: clamp(2.25rem, 6.4vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.17;
+  }
+
+  .underText {
+    max-width: 660px;
+    margin: 20px 0 0;
+    color: var(--sand);
+    line-height: 1.5;
   }
 
   .menuButton {
-    margin-left: 8.8%;
-    margin-top: 5.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 64px;
+    margin-top: clamp(28px, 4vw, 40px);
+    border-radius: 100px;
+    background-color: var(--sand);
+    font-weight: 600;
+
+    a {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .coffeeIconEnjoy {
+      position: absolute;
+      right: 40px;
+      width: 28px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+
+      @media (hover: none) {
+        opacity: 1;
+      }
+    }
+
+    &:hover .coffeeIconEnjoy {
+      opacity: 1;
+    }
   }
 }
 
-@media (max-width: 380px) {
-  .Enjoy {
-    background-size: 300% 100%;
-    padding-bottom: 17.1%;
-    padding-top: 33px;
-  }
-
-  .offerBlock {
-    margin-left: 4.6%;
-  }
-
-  .offerBlock h1 {
-    font-size: 2.62em;
-    line-height: 48.3px;
-  }
-
-  .offerBlock .underText {
-    margin-top: 39.3px;
-    word-spacing: -0.3px;
-  }
-
-  .menuButton {
-    margin-left: 4.6%;
-    margin-top: 11.5%;
-  }
-
-  .menuButton .coffeeIconEnjoy {
-    display: block;
-    opacity: 1;
-  }
-
-  .menuButton a {
-    margin-left: -28px;
+.brDesktopTablet {
+  @media (max-width: 1100px) {
+    display: none;
   }
 }

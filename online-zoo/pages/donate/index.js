@@ -1,50 +1,32 @@
-const donateIndicators = document.querySelectorAll(".circle_indicator");
-const donateFigures = document.querySelectorAll(".figure");
-const donateBigIndicators = document.querySelectorAll(".circle_indicatorBig");
-const donateAmounts = document.querySelectorAll(".dollar");
-const burger = document.querySelector(".menu_burger");
-const navTablet = document.querySelector(".nav_tablet");
+const form = document.querySelector("#donate-form");
+const customAmount = document.querySelector("#custom-amount");
+const message = document.querySelector("#donate-status");
+const presets = form.querySelectorAll('input[name="amount"]');
 
-function toggleDonateHoverByIndex(index, shouldHover) {
-  [donateIndicators[index], donateBigIndicators[index], donateAmounts[index]].forEach((node) => {
-    if (node) {
-      node.classList.toggle("hovered", shouldHover);
-    }
+customAmount.addEventListener("input", () => {
+  customAmount.value = customAmount.value.replace(/\D/g, "").slice(0, 4);
+  presets.forEach((preset) => {
+    preset.checked = preset.value === customAmount.value;
   });
-}
+});
 
-function bindDonateHover() {
-  donateFigures.forEach((figure, index) => {
-    figure.addEventListener("mouseover", () => toggleDonateHoverByIndex(index, true));
-    figure.addEventListener("mouseout", () => toggleDonateHoverByIndex(index, false));
+presets.forEach((preset) => {
+  preset.addEventListener("change", () => {
+    customAmount.value = preset.value;
   });
-}
+});
 
-function setupBurgerMenu() {
-  if (!burger || !navTablet) return;
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-  const openTabletMenu = () => {
-    navTablet.classList.add("open");
-    burger.setAttribute("aria-expanded", "true");
-  };
+  const amount = Number(customAmount.value);
+  const frequency = form.elements.frequency.value;
 
-  const closeTabletMenu = () => {
-    navTablet.classList.remove("open");
-    burger.setAttribute("aria-expanded", "false");
-  };
+  if (!amount) {
+    message.textContent = "Please choose or enter an amount first.";
+    customAmount.focus();
+    return;
+  }
 
-  burger.addEventListener("click", openTabletMenu);
-  burger.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openTabletMenu();
-    } else if (event.key === "Escape") {
-      closeTabletMenu();
-    }
-  });
-
-  navTablet.addEventListener("mouseout", closeTabletMenu);
-}
-
-bindDonateHover();
-setupBurgerMenu();
+  message.textContent = `Thank you! Your ${frequency} gift of $${amount} will feed a friend.`;
+});

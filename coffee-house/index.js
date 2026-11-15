@@ -1,118 +1,66 @@
-const burgerButtonMain = document.querySelector(".burgerButtonMain");
-const adaptivMenu = document.querySelector(".adaptivMenu");
-const navHeader = document.querySelector(".navHeader");
-const linkHeaders = document.querySelectorAll(".linkHeader");
-
-burgerButtonMain.addEventListener("click", () => {
-  adaptivMenu.classList.toggle("menuAdaptivActive");
-  burgerButtonMain.classList.toggle("burgerButtonActive");
-  navHeader.classList.toggle("navHeaderActive");
-});
-
-linkHeaders.forEach((item) => {
-  item.addEventListener("click", () => {
-    if (window.innerWidth <= 768) {
-      adaptivMenu.classList.remove("menuAdaptivActive");
-      burgerButtonMain.classList.remove("burgerButtonActive");
-      navHeader.classList.remove("navHeaderActive");
-    }
-  });
-});
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth > 768) {
-    adaptivMenu.classList.remove("menuAdaptivActive");
-    burgerButtonMain.classList.remove("burgerButtonActive");
-    navHeader.classList.remove("navHeaderActive");
-  }
-});
-
-// ====== Элементы ======
-const container = document.querySelector(".sliders");
+const sliders = document.querySelector(".sliders");
 const carousel = document.querySelector(".carousel");
-const slides = Array.from(document.querySelectorAll(".slider"));
+const slides = document.querySelectorAll(".slider");
 const [btnPrev, btnNext] = document.querySelectorAll(".arrow");
-const indicators = document.querySelectorAll(".line");
+const indicators = document.querySelectorAll(".indicator .line");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const autoplayDelay = 5000;
 
 let currentIndex = 0;
 let startX = 0;
 let deltaX = 0;
 let isDragging = false;
-let isMoving = false;
+let autoplayTimer;
 
-// ====== Инициализация ======
-function initCarousel() {
+function goToSlide(index) {
+  currentIndex = (index + slides.length) % slides.length;
   carousel.style.transition = "transform 0.4s ease";
-  goToSlide(0);
-  window.addEventListener("resize", () => goToSlide(currentIndex));
-
-  container.addEventListener("pointerdown", dragStart);
-  container.addEventListener("pointermove", dragMove);
-  container.addEventListener("pointerup", dragEnd);
-  container.addEventListener("pointercancel", dragEnd);
-}
-initCarousel();
-
-// ====== Переход к слайду ======
-function goToSlide(idx) {
-  if (isMoving) return;
-  isMoving = true;
-  const w = container.clientWidth;
-  const count = slides.length;
-  currentIndex = ((idx % count) + count) % count;
-  carousel.style.transform = `translateX(-${w * currentIndex}px)`;
-  updateIndicators();
-  carousel.addEventListener(
-    "transitionend",
-    () => {
-      isMoving = false;
-    },
-    { once: true }
-  );
-}
-
-// ====== Индикаторы ======
-function updateIndicators() {
+  carousel.style.transform = `translateX(-${sliders.clientWidth * currentIndex}px)`;
   indicators.forEach((line, i) =>
     line.classList.toggle("lineActive", i === currentIndex)
   );
+  restartAutoplay();
 }
 
-// ====== Кнопки ======
-btnNext.addEventListener("click", () => {
-  if (!isDragging) goToSlide(currentIndex + 1);
-});
-btnPrev.addEventListener("click", () => {
-  if (!isDragging) goToSlide(currentIndex - 1);
-});
+function restartAutoplay() {
+  clearTimeout(autoplayTimer);
+  if (reducedMotion.matches) return;
+  autoplayTimer = setTimeout(() => goToSlide(currentIndex + 1), autoplayDelay);
+}
 
-// ====== Drag’n’Drop через Pointer Events ======
-function dragStart(e) {
-  if (isMoving) return;
-  e.preventDefault(); // 👉 блокируем системные действия
+function dragStart(event) {
   isDragging = true;
-  startX = e.clientX;
+  startX = event.clientX;
   deltaX = 0;
   carousel.style.transition = "none";
-  container.setPointerCapture(e.pointerId);
+  clearTimeout(autoplayTimer);
+  sliders.setPointerCapture(event.pointerId);
 }
 
-function dragMove(e) {
+function dragMove(event) {
   if (!isDragging) return;
-  deltaX = e.clientX - startX;
-  const w = container.clientWidth;
-  carousel.style.transform = `translateX(-${w * currentIndex - deltaX}px)`;
+  deltaX = event.clientX - startX;
+  carousel.style.transform = `translateX(${deltaX - sliders.clientWidth * currentIndex}px)`;
 }
 
-function dragEnd(e) {
+function dragEnd() {
   if (!isDragging) return;
   isDragging = false;
-  const w = container.clientWidth;
-  const threshold = w / 4;
+  const threshold = sliders.clientWidth / 4;
   if (deltaX < -threshold) goToSlide(currentIndex + 1);
   else if (deltaX > threshold) goToSlide(currentIndex - 1);
   else goToSlide(currentIndex);
-
-  carousel.style.transition = "transform 0.4s ease";
-  container.releasePointerCapture(e.pointerId);
 }
+
+btnPrev.addEventListener("click", () => goToSlide(currentIndex - 1));
+btnNext.addEventListener("click", () => goToSlide(currentIndex + 1));
+sliders.addEventListener("pointerdown", dragStart);
+sliders.addEventListener("pointermove", dragMove);
+sliders.addEventListener("pointerup", dragEnd);
+sliders.addEventListener("pointercancel", dragEnd);
+window.addEventListener("resize", () => {
+  carousel.style.transition = "none";
+  carousel.style.transform = `translateX(-${sliders.clientWidth * currentIndex}px)`;
+});
+
+goToSlide(0);

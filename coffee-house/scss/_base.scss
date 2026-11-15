@@ -1,0 +1,70 @@
+:root {
+  --ink: rgb(64, 63, 61);
+  --sand: rgb(225, 212, 201);
+  --stone: rgb(102, 95, 85);
+  --line: rgb(193, 182, 173);
+  --accent: rgb(176, 144, 122);
+  --gutter: clamp(16px, 4vw, 40px);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--sand);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  overflow-x: hidden;
+
+  &.menuOpen {
+    overflow: hidden;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--stone);
+  outline-offset: 3px;
+}
+
+.container {
+  width: min(1360px, 100% - var(--gutter) * 2);
+  margin: 0 auto;
+  padding: 20px 0 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
