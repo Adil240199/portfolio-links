@@ -35,12 +35,6 @@
 
 ---
 
-### 🔹 [CV Page](https://adil240199.github.io/portfolio-links/cv-html/)
-- **Tech Stack**: HTML, CSS  
-- **GitHub**: [View Code](https://github.com/Adil240199/portfolio-links/tree/gh-pages/cv-html)
-
----
-
 ### 🔹 [Nonograms Puzzle Game](https://adil240199.github.io/portfolio-links/nonograms/)
 - **Tech Stack**: JavaScript, CSS  
 - **GitHub**: [View Code](https://github.com/Adil240199/portfolio-links/tree/gh-pages/nonograms)
