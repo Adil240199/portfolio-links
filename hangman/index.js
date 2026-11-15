@@ -11,6 +11,7 @@ const word = document.querySelector("#word");
 const keyboard = document.querySelector("#keyboard");
 const attemptCount = document.querySelector("#attempt-count");
 const status = document.querySelector("#game-status");
+const figureParts = document.querySelectorAll("#figure [data-part]");
 const nextWordButton = document.querySelector("#next-word");
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 const maxAttempts = 6;
@@ -47,26 +48,33 @@ function finishGame(won) {
   renderWord();
 }
 
-function updateKeyboard() {
-  keyboard.replaceChildren();
-
+function createKeyboard() {
   for (const letter of alphabet) {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "game__key";
     button.textContent = letter;
-    button.disabled = guessedLetters.has(letter) || gameComplete;
     button.setAttribute("aria-label", `Guess ${letter}`);
-
-    if (guessedLetters.has(letter)) {
-      button.classList.add(currentQuestion.answer.toLowerCase().includes(letter)
-        ? "is-correct"
-        : "is-wrong");
-    }
-
     button.addEventListener("click", () => handleGuess(letter));
     keyboard.appendChild(button);
   }
+}
+
+function updateKeyboard() {
+  keyboard.querySelectorAll("button").forEach((button) => {
+    const letter = button.textContent;
+    const isGuessed = guessedLetters.has(letter);
+
+    button.disabled = isGuessed || gameComplete;
+    button.classList.toggle("is-correct", isGuessed && currentQuestion.answer.toLowerCase().includes(letter));
+    button.classList.toggle("is-wrong", isGuessed && !currentQuestion.answer.toLowerCase().includes(letter));
+  });
+}
+
+function renderFigure() {
+  figureParts.forEach((part, index) => {
+    part.hidden = index >= incorrectGuesses;
+  });
 }
 
 function handleGuess(letter) {
@@ -81,6 +89,7 @@ function handleGuess(letter) {
   }
 
   renderWord();
+  renderFigure();
   updateKeyboard();
 
   const foundLetters = [...currentQuestion.answer.toLowerCase()].every((char) =>
@@ -113,6 +122,7 @@ function startNewQuestion() {
   status.textContent = "";
   nextWordButton.disabled = true;
   renderWord();
+  renderFigure();
   updateKeyboard();
   keyboard.querySelector("button")?.focus();
 }
@@ -123,4 +133,5 @@ document.addEventListener("keydown", (event) => {
 });
 
 nextWordButton.addEventListener("click", startNewQuestion);
+createKeyboard();
 startNewQuestion();

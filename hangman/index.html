@@ -18,7 +18,20 @@
 
       <section class="game__play" aria-label="Hangman puzzle">
         <div class="game__illustration">
-          <object class="game__gallows" data="./assets/gallows.svg" type="image/svg+xml" aria-label="Hangman gallows"></object>
+          <svg class="game__gallows" viewBox="0 0 353 581" fill="none" role="img" aria-label="Hangman gallows">
+            <rect x="176.337" y="34.6662" width="39" height="199.598" transform="rotate(45 176.337 34.6662)" fill="black" stroke="#FFFEFE" stroke-width="3"/>
+            <rect x="34.5" y="1.5" width="39" height="578" rx="3.5" fill="black" stroke="#FFFEFE" stroke-width="3"/>
+            <rect x="351.5" y="34.5" width="39" height="350" rx="3.5" transform="rotate(90 351.5 34.5)" fill="black" stroke="#FFFEFE" stroke-width="3"/>
+            <rect x="298" y="75" width="10" height="74" fill="black"/>
+            <g id="figure" stroke="black" stroke-width="10" stroke-linecap="round">
+              <circle data-part cx="303" cy="185" r="36" hidden/>
+              <line data-part x1="303" y1="221" x2="303" y2="360" hidden/>
+              <line data-part x1="303" y1="245" x2="245" y2="315" hidden/>
+              <line data-part x1="303" y1="245" x2="361" y2="315" hidden/>
+              <line data-part x1="303" y1="360" x2="255" y2="450" hidden/>
+              <line data-part x1="303" y1="360" x2="351" y2="450" hidden/>
+            </g>
+          </svg>
           <p class="game__hint"><span>Hint</span><span id="hint"></span></p>
         </div>
 
